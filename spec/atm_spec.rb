@@ -6,6 +6,7 @@ describe Atm do
     before do
         allow(account).to receive(:balance).and_return(100)
         allow(account).to receive(:balance=)
+        allow(account).to receive(:account_status)
     end
 
     it 'has 1000$ on initialize' do
@@ -39,18 +40,16 @@ describe Atm do
         expect(subject.withdraw(50, 9999, account)).to eq expected_output
     end
 
+    it 'rejects withdrawal if the account is disabled' do
+        allow(account).to receive(:account_status).and_return(:disabled)
+        expected_output = { status: false, message: 'account disabled', date: Date.today }
+        expect(subject.withdraw(5, '1234', account))
+    end
+
     it 'allows withdrawal if the account has enough balance' do
         expected_output = { status: true, message: 'success', date: Date.today, amount: 45 }
         expect(subject.withdraw(45, '1234', account)).to eq expected_output
     end
-
-    it 'rejects withdrawal if account status is disabled' do
-        allow(account).to receive(account_status).and_return(:disabled)
-        expected_output = { status: false, message: 'account inactive', date: Date.today}
-        expect(subject.withdraw(45, '1234', account, :disabled)).to eq expected_output
-    end
-
-
     
 end
 
