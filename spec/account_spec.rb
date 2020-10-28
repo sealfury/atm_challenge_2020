@@ -22,7 +22,7 @@ describe Account do
         expect(subject.account_status).to eq :active
     end
 
-    it 'is expected to have av owner' do
+    it 'is expected to have an owner' do
         expect(subject.owner).to eq person
     end
 
