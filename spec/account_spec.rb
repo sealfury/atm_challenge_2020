@@ -7,6 +7,11 @@ describe Account do
 
     subject { described_class.new(owner: person)}
 
+    before do
+        allow(account).to receive(:balance).and_return(0)
+        allow(account).to receive(:balance=)
+    end
+
     it 'check the length of a number' do 
         number = 1234
         number_length = Math.log10(number).to_i + 1

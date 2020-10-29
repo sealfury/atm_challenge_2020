@@ -1,5 +1,7 @@
+require './lib/atm.rb'
+
 class Account
-    attr_accessor :account_status, :pin_code, :exp_date, :owner
+    attr_accessor :account_status, :pin_code, :exp_date, :owner, :balance
 
     STANDARD_VALIDITY_YRS = 5
 
@@ -10,6 +12,7 @@ class Account
         @pin_code = rand(1000..9999)
         @exp_date = '10/25'
         set_owner(attrs[:owner])
+        @balance = 0
     end
 
     def set_expire_date
