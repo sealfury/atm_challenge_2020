@@ -4,14 +4,14 @@ require './lib/atm.rb'
 
 describe Person do
 
-    subject { descibe_class.new(name: 'Thomas')}
+    subject { described_class.new(name: 'Thomas')}
 
     it 'is expected to have a :name on initialize' do
         expect(subject.name).not_to be nil
     end
 
     it 'is expected to raise an error if no name is set' do
-        expect { described_class.new }.to raise_error 'A name id reqired'
+        expect { described_class.new }.to raise_error 'A name is required'
     end
 
     it 'is expected to have :cash attribute with the value of 0 on initialize' do
