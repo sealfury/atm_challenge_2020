@@ -1,21 +1,18 @@
 # flytta senare till spec folder eller ATM_class
 require './lib/account.rb'
-#require './lib/atm.rb'
+require './lib/atm.rb'
 
 describe Account do
     let(:person) {instance_double('Person', name: 'Thomas')}
 
     subject { described_class.new(owner: person)}
 
-    before do
-        allow(account).to receive(:balance).and_return(0)
-        allow(account).to receive(:balance=)
-    end
+    
 
-    it 'check the length of a number' do 
-        number = 1234
-        number_length = Math.log10(number).to_i + 1
-        expect(number_length).to eq 4
+    it 'checks the length of a pin code' do 
+        pin_code = rand(1000..9999)
+        pin_code_length = Math.log10(pin_code).to_i + 1
+        expect(pin_code_length).to eq 4
     end
 
     it 'is expected to have an expiry date on initialize' do
