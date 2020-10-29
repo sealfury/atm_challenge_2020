@@ -9,19 +9,23 @@ class Account
 
     def initialize(attrs = {})
         @account_status = :active
+        @balance = 0
         @pin_code = rand(1000..9999)
         @exp_date = '10/25'
         set_owner(attrs[:owner])
-        @balance = 0
+        
     end
+
 
     def set_expire_date
         Date.today.next_year(Account::STANDARD_VALIDITY_YRS).strftime('%m/%y')
     end
 
+
     def deactivate
         @account_status = :deactivated
     end
+
 
     private 
 

@@ -34,25 +34,29 @@ class Person
     end
 
     def deposit_funds(amount)
-        @account.balance += amount
         @cash -= amount
+        @account.balance += amount
     end
 
     def withdraw_funds(args)
         args[:atm] == nil ? missing_atm : atm = args[:atm]
         account = @account 
         amount = args[:amount]
-        pin = args[:pin]
-        #response = atm.withdraw(amount, pin, account)
-        #response[:status] == true ? increase_cash(response) : responce
+        pin = args[:pin_code]
+        response = atm.withdraw(amount, pin_code, account)
+        response[:status] == true ? increase_cash(response) : response
     end
 
-    # def increase_cash(response)
-    #     @cash += responce[:amount]
-    # end
+    def increase_cash(response)
+        @cash += responce[:amount]
+    end
 
     def missing_name
         raise 'A name is required'
+    end
+
+    def missing_atm
+        raise RuntimeError, 'An ATM is required'
     end
 
 end
