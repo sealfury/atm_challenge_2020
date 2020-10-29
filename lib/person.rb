@@ -19,7 +19,7 @@ class Person
     end
 
     def no_account
-        raise RuntimeError, 'no account pressent'
+        raise RuntimeError, 'no account present'
     end
 
     private

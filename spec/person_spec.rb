@@ -22,7 +22,7 @@ describe Person do
         expect(subject.account).to be nil
     end
 
-    describe 'can create an Account' do 
+    describe 'can create an account' do 
         before {subject.create_account }
         it 'of Account class ' do
             expect(subject.account).to be_an_instance_of Account
@@ -67,9 +67,9 @@ describe Person do
     #     end
     end
 
-     describe 'can not manage funds if no account been created' do #bör kanske flyttas
-        it 'can not deposit funds' do
-            expect { subject.no_account }.to raise_error RuntimeError, 'no account pressent'
+     describe 'can\'t manage funds if no account been created' do #bör kanske flyttas
+        it 'can\'t deposit funds' do
+            expect { subject.no_account }.to raise_error RuntimeError, 'no account present'
         end 
     end
 end

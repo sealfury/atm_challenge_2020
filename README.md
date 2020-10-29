@@ -23,6 +23,8 @@ Is the rspec gem a dependency?
 
 [CraftOverflow Help With Disabled User Account](https://github.com/CraftAcademy/CraftOverflow/issues/45 "Thanks Faraz!")
 
+[Raise_error Matcher on Relish](https://relishapp.com/rspec/rspec-expectations/v/2-8/docs/built-in-matchers/raise-error-matcher)
+
 ## Updates/Improvement Plans
 
 ## License 
