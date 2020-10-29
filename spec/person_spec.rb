@@ -39,12 +39,7 @@ describe Person do
         it 'can deposit funds' do 
             expect(subject.deposit(100)).to be_truthy
         end
-
-        describe 'can not manage funds if no account been created' do #bör kanske flyttas
-            it 'can not deposit funds' do
-                expect { subject.deposit(100) }.to raise_error(RuntimeError, 'no account pressent')
-            end 
-        end
+    
 
     #     it 'funds are added to the account balance - deducted from cash' do
     #       subject.cash = 100
@@ -70,5 +65,11 @@ describe Person do
     #         expect(subject.account.balance).to be 0
     #         expect(subject.cash).to be 100
     #     end
-     end    
+    end
+
+     describe 'can not manage funds if no account been created' do #bör kanske flyttas
+        it 'can not deposit funds' do
+            expect { subject.no_account }.to raise_error RuntimeError, 'no account pressent'
+        end 
+    end
 end

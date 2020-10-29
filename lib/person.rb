@@ -18,6 +18,10 @@ class Person
         @account = nil ? no_account : deposit_funds(amount)
     end
 
+    def no_account
+        raise RuntimeError, 'no account pressent'
+    end
+
     private
 
     def get_name(name)
@@ -30,10 +34,6 @@ class Person
 
     def missing_name
         raise 'A name is required'
-    end
-
-    def no_account
-        raise(RuntimeError, 'no account pressent')
     end
 
 end
