@@ -1,12 +1,13 @@
 require './lib/account.rb'
 require './lib/atm.rb'
+require 'pry-byebug'
 
 class Person
     attr_accessor :name, :cash, :account
 
     def initialize(attrs = {})
         @name = get_name(attrs[:name])
-        @cash = 0
+        @cash = 100
         @account = nil
     end
 
@@ -22,6 +23,7 @@ class Person
         raise RuntimeError, 'no account present'
     end
 
+
     private
 
     def get_name(name)
@@ -29,8 +31,10 @@ class Person
     end
 
     def deposit_funds(amount)
-        amount == 100
+        # @account += amount
+        @cash -= amount
     end
+
 
     def missing_name
         raise 'A name is required'

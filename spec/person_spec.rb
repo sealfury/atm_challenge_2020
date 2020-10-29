@@ -1,6 +1,7 @@
 
 require './lib/person.rb'
 require './lib/atm.rb'
+require 'pry-byebug'
 
 describe Person do
 
@@ -41,12 +42,12 @@ describe Person do
         end
     
 
-    #     it 'funds are added to the account balance - deducted from cash' do
-    #       subject.cash = 100
-    #       subject.deposit(100)
-    #       expect(subject.account.balance).to be 100
-    #       expect(subject.cash).to be 0
-    #     end
+        it 'funds are added to the account balance - deducted from cash' do
+          subject.cash = 100
+          subject.deposit(100)
+        #   expect(subject.account).to eq 100
+          expect(subject.cash).to eq 0
+        end
 
     #     it 'can withdraw funds' do
     #         command = lambda {subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm) }
