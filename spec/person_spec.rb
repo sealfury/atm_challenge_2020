@@ -1,6 +1,5 @@
 
 require './lib/person.rb'
-require './lib/atm.rb'
 require 'pry-byebug'
 
 describe Person do
@@ -37,6 +36,7 @@ describe Person do
     describe 'can manage funds if an account been created' do
         let(:atm) { Atm.new }
         before { subject.create_account }
+        
         it 'can deposit funds' do 
             expect(subject.deposit(100)).to be_truthy
         end
@@ -45,18 +45,18 @@ describe Person do
         it 'funds are added to the account balance - deducted from cash' do
           subject.cash = 100
           subject.deposit(100)
-          expect(subject.account.balance).to be 100
-          expect(subject.cash).to be 0
-    
+          subject.withdraw(amount:100, pin: subject.account.pin_code, account: subject.account, atm: atm)
+          expect(subject.cash).to eq 0
+          expect(subject.account.balance).to eq 100
         end
 
         it 'can withdraw funds' do
-            command = lambda {subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm) }
+            command = -> {subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm) }
             expect(command.call).to be_truthy
         end
 
         it 'withdraw is expected to raise an error if no ATM is passed in' do
-            command = lambda { subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account) }
+            command = -> { subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account) }
             expect { command.call }.to raise_error 'An ATM is required'
         end
 
@@ -64,8 +64,8 @@ describe Person do
             subject.cash = 100
             subject.deposit(100)
             subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm)
-            expect(subject.account.balance).to be 0
-            expect(subject.cash).to be 100
+            expect(subject.account.balance).to eq 0
+            expect(subject.cash).to eq 100
         end
     end
 
