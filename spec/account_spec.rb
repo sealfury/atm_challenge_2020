@@ -5,7 +5,7 @@ require './lib/atm.rb'
 describe Account do
     let(:person) {instance_double('Person', name: 'Thomas')}
 
-    subject { described_class.new(owner: person)}
+    subject { described_class.new(owner: person) }
     
 
     it 'checks the length of a pin code' do 

@@ -1,10 +1,12 @@
 
 require './lib/person.rb'
+require './lib/account.rb'
+require './lib/atm.rb'
 require 'pry-byebug'
 
 describe Person do
 
-    subject { described_class.new(name: 'Thomas')}
+    subject { described_class.new(name: 'Thomas') }
 
     it 'is expected to have a :name on initialize' do
         expect(subject.name).not_to be nil
@@ -23,7 +25,7 @@ describe Person do
     end
 
     describe 'can create an account' do 
-        before {subject.create_account }
+        before { subject.create_account }
         it 'of Account class ' do
             expect(subject.account).to be_an_instance_of Account
         end
@@ -36,7 +38,6 @@ describe Person do
     describe 'can manage funds if an account been created' do
         let(:atm) { Atm.new }
         before { subject.create_account }
-        
         it 'can deposit funds' do 
             expect(subject.deposit(100)).to be_truthy
         end
@@ -45,7 +46,6 @@ describe Person do
         it 'funds are added to the account balance - deducted from cash' do
           subject.cash = 100
           subject.deposit(100)
-          subject.withdraw(amount:100, pin: subject.account.pin_code, account: subject.account, atm: atm)
           expect(subject.cash).to eq 0
           expect(subject.account.balance).to eq 100
         end
@@ -69,9 +69,9 @@ describe Person do
         end
     end
 
-     describe 'can\'t manage funds if no account been created' do #bör kanske flyttas
+     describe 'can\'t manage funds if no account been created' do 
         it 'can\'t deposit funds' do
-            expect { subject.no_account }.to raise_error RuntimeError, 'no account present'
+            expect { subject.deposit(100) }.to raise_error RuntimeError, 'no account present'
         end 
     end
 end

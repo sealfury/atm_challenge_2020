@@ -9,11 +9,10 @@ class Account
 
     def initialize(attrs = {})
         @account_status = :active
-        @balance = 0
         @pin_code = rand(1000..9999)
         @exp_date = '10/25'
         set_owner(attrs[:owner])
-        
+        @balance = 0
     end
 
 

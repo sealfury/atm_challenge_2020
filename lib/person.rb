@@ -3,7 +3,7 @@ require './lib/atm.rb'
 require 'pry-byebug'
 
 class Person
-    attr_accessor :name, :cash, :account, 
+    attr_accessor :name, :cash, :account 
 
     def initialize(attrs = {})
         @name = get_name(attrs[:name])
@@ -16,12 +16,10 @@ class Person
     end
 
     def deposit(amount)
-        @account = nil ? no_account : deposit_funds(amount)
+        @account == nil ? no_account : deposit_funds(amount)
     end
 
-    def no_account
-        raise RuntimeError, 'no account present'
-    end
+    
 
     def withdraw(args = {})
         @account == nil ? missing_account : withdraw_funds(args)
@@ -31,6 +29,10 @@ class Person
 
     def get_name(name)
         name == nil ? missing_name : name
+    end
+
+    def no_account
+        raise RuntimeError, 'no account present'
     end
 
     def deposit_funds(amount)
